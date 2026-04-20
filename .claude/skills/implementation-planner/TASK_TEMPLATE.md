@@ -42,6 +42,12 @@ The goal: a subagent with no prior context should be able to pick up this packag
 - List the exact names or paths if known
 - This is the artifact that other tasks will depend on
 
+**Acceptance Criteria:**
+- Concrete, observable conditions that define "done" for this task
+- Each criterion must be testable without knowing the implementation details
+- Examples: "API returns 200 for valid input and 400 for missing fields", "DB insert is idempotent on duplicate key", "function handles null input without throwing"
+- Do NOT write vague criteria like "works correctly" — every criterion must be verifiable
+
 **Implementation Method:**
 - Chosen approach: specific pattern, class structure, or integration method
 - Key library/tool: exact package name and version if relevant
@@ -59,6 +65,18 @@ The goal: a subagent with no prior context should be able to pick up this packag
 - Must not [introduce new dependencies without flagging, bypass existing middleware, etc.]
 - Must be consistent with [specific files or patterns in the project]
 
+**Security Constraints:**
+- Are there user-controlled inputs fed to DB queries, shell commands, or HTML output? If yes, specify how they must be sanitized or parameterized.
+- Does this task handle credentials, tokens, or secrets? If yes, state explicitly: where they come from (env var, secret store) and that they must never be logged or hardcoded.
+- Does this task gate access to resources? If yes, specify which auth/permission checks are required and where they must be enforced.
+- If none of the above apply, write: "No security-sensitive inputs or operations in this task."
+
+**Error Handling:**
+- Specify the error propagation strategy: throw exceptions / return error values / emit events
+- Specify log level and format for errors in this task (e.g., `console.error('[MODULE] message', err)`)
+- Specify what happens on partial failure — does this task roll back, retry, or fail fast?
+- Must be consistent with the error handling convention in [reference file or module]
+
 **Context (for subagent):**
 - Copy-paste the relevant spec excerpts, schema snippets, or interface definitions the subagent needs
 - Do not assume the subagent has read the architecture spec — include what they need here
@@ -68,6 +86,11 @@ The goal: a subagent with no prior context should be able to pick up this packag
 - What might be harder than expected (third-party API behavior, edge cases in the domain logic, etc.)
 - What decisions were deferred to the implementer (things the plan didn't prescribe)
 - What to do if X fails or isn't available (fallback decisions, if any)
+
+**Rollback / On Failure:**
+- If this task produces side effects (DB writes, external API calls, file writes), specify how to undo or recover if it fails midway
+- For idempotent tasks: state that explicitly ("safe to re-run — all operations are idempotent")
+- For destructive or irreversible operations: flag clearly and specify what must be backed up or verified before starting
 
 ---
 
@@ -100,6 +123,10 @@ Not included:
 - [file or artifact]
 - [file or artifact]
 
+**Acceptance Criteria:**
+- [Observable, testable condition 1]
+- [Observable, testable condition 2]
+
 **Implementation Method:**
 - Chosen approach: [specific method or pattern]
 - Key library/tool: [package name]
@@ -113,12 +140,21 @@ Not included:
 - [Must / must not statement]
 - [Must / must not statement]
 
+**Security Constraints:**
+- [User inputs / SQL / auth / secrets handling — or "No security-sensitive inputs or operations in this task."]
+
+**Error Handling:**
+- [Throw / return / emit strategy, log format, partial failure behavior]
+
 **Context (for subagent):**
 [Relevant spec excerpts, schema snippets, or interface definitions copied here]
 
 **Risks / Unknowns:**
 - [What might be harder than expected]
 - [Deferred decision for the implementer]
+
+**Rollback / On Failure:**
+- [Idempotent / reversible / irreversible — and what to do if it fails]
 ```
 
 ---
@@ -131,6 +167,10 @@ Before including a task package in the final plan, verify:
 - [ ] The scope boundaries are clear — no ambiguity about what's in or out
 - [ ] All dependencies are listed (nothing assumed to "just be there")
 - [ ] The interface contract is specific enough for other tasks to code against
+- [ ] Acceptance Criteria are observable and testable — no vague "works correctly"
+- [ ] Security Constraints explicitly address inputs, credentials, and auth (or declare none apply)
+- [ ] Error Handling strategy matches the project convention and is stated explicitly
+- [ ] Rollback / On Failure behavior is specified for any side-effectful task
 - [ ] Context section contains everything the subagent actually needs
 - [ ] Risks / Unknowns are honest — nothing swept under the rug
 - [ ] Parallel tasks are correctly identified (same phase, no shared mutable state)

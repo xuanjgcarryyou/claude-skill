@@ -117,6 +117,12 @@ One paragraph describing the refined idea clearly.
 ### Tech Stack Recommendation
 - Based on constraints and context discussed
 
+### Security Considerations
+- Does this system handle user-supplied input that reaches a DB, filesystem, or external service? If so, what sanitization or parameterization is required?
+- Does this system handle credentials, tokens, or PII? How are they stored and accessed (env vars, secret store, encrypted at rest)?
+- Does this system require authentication or authorization? Which components enforce it and at what boundary?
+- If none of the above apply, write: "No significant security surface in this system."
+
 ### Risks and Unknowns
 - What might break or slow you down
 - What we don't know yet that matters

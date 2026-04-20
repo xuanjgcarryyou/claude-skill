@@ -80,6 +80,15 @@ Work through each axis systematically. For each finding, record: severity, axis,
 - Designed function signatures inconsistently with similar functions in the project?
 - Handled errors inconsistently with the project's existing convention?
 
+### Axis 8: Security
+- Used string interpolation or concatenation to construct SQL, shell commands, or HTML output? (Must use parameterized queries / shell escaping / output encoding instead.)
+- Hardcoded a credential, API key, token, or password directly in code?
+- Logged a secret, password, token, or PII? Even in debug paths?
+- Accepted user input and used it in a file path, subprocess, or eval without validation?
+- Implemented auth checks inside a function that could be bypassed by callers — auth must be enforced at the boundary, not buried inside business logic.
+- Missing input validation at a system boundary (HTTP handler, CLI arg, message queue consumer, webhook payload)?
+- Returned internal implementation details (stack traces, internal error messages, DB schema hints) in user-facing error responses?
+
 ---
 
 ## AI Self-Awareness Heuristics
@@ -161,7 +170,7 @@ This review covers only what was just generated. It does NOT:
 - Review business logic correctness
 - Replace a proper PR review process
 
-Its only job: immediately after generating code, catch redundancy, inconsistency, compatibility issues, and waste — before the developer runs it.
+Its only job: immediately after generating code, catch redundancy, inconsistency, compatibility issues, waste, and obvious security defects — before the developer runs it.
 
 ---
 

@@ -94,6 +94,10 @@ Each task package is the most important output of this skill. It must be:
 - **Scoped clearly**: defined start state and end state — no ambiguity about what's in or out
 - **Dependency-aware**: knows exactly what must exist before this task begins
 - **Output-defined**: what exactly this task produces (file, class, endpoint, schema, etc.)
+- **Acceptance-criteria-complete**: every task must include observable, testable done conditions — no vague "works correctly"
+- **Security-aware**: every task must explicitly state security constraints (inputs, credentials, auth) or declare none apply
+- **Error-handling-consistent**: every task must specify throw/return/emit strategy and log format — must match the project convention
+- **Rollback-specified**: every task with side effects must state how to recover if it fails midway
 - **Context-complete**: includes all info the subagent needs — relevant interfaces, schema snippets, constraints
 
 If a task requires knowing something not in the spec, add it to the task's Input section. If it's genuinely unclear, flag it as a Pre-Build Decision instead of inventing a requirement.
@@ -189,6 +193,20 @@ Always prefer:
 - Methods consistent with the existing or confirmed project stack
 - Well-established libraries over custom implementations unless there's a clear reason
 - Approaches that keep components loosely coupled and independently testable
+
+### On Testing Tasks
+Testing is not optional — place it explicitly in the plan:
+- Every Phase 2 (Core) and Phase 3 (Integration) task should have corresponding test coverage. Either include it within the task's scope or create a dedicated test task that immediately follows it.
+- Unit tests for a module belong in the same phase as that module, not deferred to Phase 4.
+- Integration tests (wiring between components) belong in Phase 3.
+- End-to-end or smoke tests belong in Phase 3 or Phase 4 — specify which, and define what "passes" means.
+- Never treat testing as implied. If a task doesn't mention tests, a subagent will skip them.
+
+### On Interface Contract Versioning (Parallel Execution)
+When multiple tasks run in parallel and one exposes an Interface Contract consumed by another:
+- The Interface Contract in the Task Package is a snapshot locked at plan time. Subagents must implement it exactly as written — do not evolve it during implementation without coordination.
+- If a subagent realizes the Interface Contract must change, they must flag it before proceeding. Mark this risk explicitly in the Risks / Unknowns field of any task that depends on a parallel task's interface.
+- If the interface is genuinely uncertain at plan time, do not leave it vague — mark it as a Pre-Build Decision and block the dependent tasks until it's resolved.
 
 ### On Subagent Task Design
 Write every task package assuming the subagent has:
