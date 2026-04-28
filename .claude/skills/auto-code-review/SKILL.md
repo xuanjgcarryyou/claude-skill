@@ -89,6 +89,14 @@ Work through each axis systematically. For each finding, record: severity, axis,
 - Missing input validation at a system boundary (HTTP handler, CLI arg, message queue consumer, webhook payload)?
 - Returned internal implementation details (stack traces, internal error messages, DB schema hints) in user-facing error responses?
 
+### Axis 9: Test Coverage
+- Added new functions, classes, or endpoints without any corresponding tests?
+- Modified existing behavior without updating the tests that cover it?
+- Tests exist but only cover the happy path — no boundary cases, no error paths?
+- Tests assert on implementation details (internal state, private methods, mock call counts) rather than observable behavior?
+- Mocked your own internal modules in a test that should be an integration test?
+- Left test files with `TODO`, `skip`, `xit`, `pytest.mark.skip`, or other deferrals that weren't there before?
+
 ---
 
 ## AI Self-Awareness Heuristics

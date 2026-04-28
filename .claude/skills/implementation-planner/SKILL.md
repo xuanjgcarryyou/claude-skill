@@ -126,6 +126,7 @@ For each component:
 **[Component Name]**
 - Chosen approach: [specific method, library, pattern]
 - Why: [1–2 sentence rationale]
+- Complexity: Low / Medium / High
 - Key risks: [what might be harder than expected]
 ```
 

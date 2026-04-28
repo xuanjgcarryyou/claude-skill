@@ -4,10 +4,11 @@ description: >
   Locks API interface contracts before parallel development begins, serving as
   the formal bridge between frontend and backend teams. Invoke this skill when
   a user says "define API", "lock the interface", "API contract",
-  "before we implement", or "frontend-backend boundary". It outputs an
-  OpenAPI-compatible YAML contract marked LOCKED with a semantic version,
-  without implementing any endpoints. Any contract modification requires a
-  version bump and explicit notification to all dependent parties.
+  "frontend-backend boundary", "what does the endpoint look like", or
+  "agree on the shape". It outputs an OpenAPI-compatible YAML contract marked
+  LOCKED with a semantic version, without implementing any endpoints. Any
+  contract modification requires a version bump and explicit notification to
+  all dependent parties.
 ---
 
 # contracting-api
@@ -25,7 +26,6 @@ Freeze the interface. Unfreeze only with explicit version increment.
 - "define API"
 - "lock the interface"
 - "API contract"
-- "before we implement"
 - "frontend-backend boundary"
 - "what does the endpoint look like"
 - "agree on the shape"

@@ -99,6 +99,11 @@ One paragraph describing the refined idea clearly.
 - What this system/feature achieves
 - Success criteria (concrete, not vague)
 
+### Completion Criteria
+- Observable conditions that define "done" — something a person can verify without reading the code
+- What must be demonstrably true when the build is complete?
+- How will you confirm the system works end-to-end?
+
 ### Out of Scope
 - What this explicitly does NOT include in v1
 
