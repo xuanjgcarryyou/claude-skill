@@ -53,6 +53,23 @@
 
 ---
 
+## Decision
+
+> State the confirmed stack in one paragraph.
+> Reference the team's constraints, available time, and demo timeline.
+> Example: "We will use FastAPI + PostgreSQL + React because teammate A knows Python,
+> teammate C knows React, and both can be deployed to Railway within 30 minutes."
+
+---
+
+## Rationale
+
+> Why this specific combination over the alternatives considered.
+> Be specific about what makes it safe for a 26-hour timebox.
+> Reference: team familiarity, setup overhead, integration simplicity, mock feasibility, demo reliability.
+
+---
+
 ## Rejected Options
 
 | Alternative | Why Rejected |
