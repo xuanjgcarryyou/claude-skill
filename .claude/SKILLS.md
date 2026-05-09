@@ -14,6 +14,7 @@ A tracking file for all custom Claude Code skills in this project.
 | implementation-planner | "how do we build this", "break this into tasks", "give me a task breakdown", "split this for subagents", "what's the build plan" | Active | `skills/implementation-planner/` |
 | migrating-schema | "migration", "alter table", "schema change", "add column", "drop column", "schema.prisma" | Active | `skills/migrating-schema/` |
 | orchestrating-hackathon | "黑客松開始", "hackathon start", "題目是…", "幫我破題", "我們要參加黑客松", "two-day hackathon" | Active | `skills/orchestrating-hackathon/` |
+| pdf | "fill PDF", "PDF form", "read PDF", "extract from PDF", "annotate PDF", "convert PDF" | Active | `skills/pdf/` |
 | refactoring-safely | "refactor", "clean up", "restructure", "reorganize", "simplify the code" | Active | `skills/refactoring-safely/` |
 | reviewing-security | "security review", "security audit", "is this secure", "review for security", "before we ship" | Active | `skills/reviewing-security/` |
 | running-retrospective | "retro", "retrospective", "let's do a retro", "what did we learn", "update CLAUDE.md" | Active | `skills/running-retrospective/` |
