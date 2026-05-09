@@ -20,6 +20,7 @@ A tracking file for all custom Claude Code skills in this project.
 | running-retrospective | "retro", "retrospective", "let's do a retro", "what did we learn", "update CLAUDE.md" | Active | `skills/running-retrospective/` |
 | setting-up-context | "let's start a new session", "initialize context", "set up context", "what are we working on", "fresh start" | Active | `skills/setting-up-context/` |
 | summarizing-pr | "write PR description", "summarize my changes", "create PR", "PR ready", "write the PR" | Active | `skills/summarizing-pr/` |
+| webapp-testing | "test the webapp", "test UI", "playwright", "browser test", "screenshot the app", "debug UI", "verify frontend" | Active | `skills/webapp-testing/` |
 | writing-tests | "write tests", "add tests", "test coverage", "generate tests", "missing tests" | Active | `skills/writing-tests/` |
 
 ## Notes
